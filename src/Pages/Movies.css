@@ -1,0 +1,154 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.movie__container{
+    display: flex;
+    flex-direction: column;
+}
+
+.movies__loading {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.filter__wrap{
+    width: 100%;
+    max-width: 300px;
+    right: 10px;
+    top: 110%;
+    position: absolute;
+    border-radius: 50px;
+    overflow: hidden;
+    z-index: 2;
+}
+.movies__filter{
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 20px;
+    background-color: #3b2f2f; 
+    color: #d5cbcb; 
+    font-size: 16px; 
+    border: none;
+    border-radius: 25px; 
+    cursor: pointer;
+    appearance: none; 
+    text-align: left;
+}
+
+.movies__grid {
+    display: grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 30px;
+    padding-top: 80px;
+    position: relative;
+  }
+  
+  .movie__card {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+    height: 500px;
+  }
+  
+  .movie__card:hover {
+    transform: scale(1.03);
+  }
+  .movie__img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+  .movie__info {
+    padding: 15px;
+    color: #fff;
+    text-align: center;
+  }
+  .movie__title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  
+  .movie__year {
+    font-size: 14px;
+    color: #ccc;
+  }
+  .no__results {
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    margin-top: 50px;
+    grid-column: 1 / -1;
+  }
+  
+  .input__wrap{
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    border-radius: 50px;
+    overflow: hidden;
+    z-index: 2;
+}
+input{
+    color: rgba(0, 0, 0, .87);
+    width: 100%;
+    max-width: 800px;
+    height: 55px;
+    font-size: 20px;
+    padding-left: 20px;
+}
+@media(max-width:768px){
+    .input__wrap{
+        max-width: 60%;
+
+    }
+    input{
+   max-width: 600px;
+   font-size: 16px;
+ padding-left: 10px;
+   height: 40px;
+    }
+    .filter__wrap{
+        width: 100%;
+        max-width: 300px;
+    }
+    .movie__img {
+        height: 210px;
+      }
+    
+      .movie__title {
+        font-size: 16px;
+      }
+      .movie__card{
+        height: 300px;
+      }
+    
+}
+@media (max-width: 430px) {
+    input{
+        max-width: 400px;
+       font-size: 16px;
+       padding-left: 10px;
+       height: 30px; }
+    
+    .filter__wrap{
+        width: 100%;
+        max-width: 200px;
+    }
+    .movies__grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,158 @@
+html {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+}
+.header {
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    padding: 40px 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+  }
+  
+.header__title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+ .logo{
+    width: 100%;
+    max-width: 150px;
+    height: 40px;
+    border-radius: 50%;
+    align-items: center;
+}
+.links {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 430px;
+    align-items: center;
+}
+.content__wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 55px;
+    width: 100%;
+    max-width: 1200px;
+}
+h1 {
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: .1em;
+    font-size: 45px;
+    margin-bottom: 20px;
+    color: #fff;
+    line-height: 1.25;
+    z-index: 2;
+    margin-top: -5px;
+}
+.input__wrap{
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    border-radius: 50px;
+    overflow: hidden;
+    z-index: 2;
+}
+input{
+    color: rgba(0, 0, 0, .87);
+    width: 100%;
+    max-width: 800px;
+    height: 55px;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.movie__poster{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+}
+video{
+  width: 60%;
+  max-width: 900px;
+  height: auto;
+  border-radius: 10px;
+  padding: 40px;
+}
+
+@media(max-width:768px){
+    .header{
+        flex-direction: column;
+        padding: 20px 10px;
+    }
+    h1{
+        font-size: 40px;
+        margin-top: 50px;
+    }
+    .header__title{
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    .input__wrap{
+        max-width: 60%;
+
+    }
+    input{
+   max-width: 600px;
+   font-size: 16px;
+ padding-left: 10px;
+   height: 40px;
+    }
+    .links {
+        display: flex;
+        justify-content: space-between;
+        width: 60%;
+        max-width: 430px;
+        margin-right: 10px;
+    }
+    .logo{
+        max-width: 25px;
+        height: 25px;
+        clip-path: 50%;
+    }
+    video{
+        width: 90%;
+    }
+}
+
+@media (max-width: 430px) {
+    .links{
+        display: none;
+    }
+    input{
+     max-width: 400px;
+    font-size: 16px;
+    padding-left: 10px;
+    height: 30px; }
+    video{
+        width: 90%;
+    }
+}
