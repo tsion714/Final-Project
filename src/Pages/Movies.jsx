@@ -100,7 +100,7 @@ return (
     backgroundImage: `url(${background})`,
   }}>
 <div className="header__title">
-  <div className="logo__container">
+      <div className="logo__container">
       <img src={logo} alt="" className="logo"/>
   </div>
   <div className="links">
@@ -143,13 +143,18 @@ return (
           <div className="movies__grid">
               {movies.length > 0 ? (
                   movies.map((movie) => (
-                      <div key={movie.imdbID} className="movie__card">
-                          <img src={movie.Poster} alt={movie.Title} className="movie__img" />
-                          <div className="movie__info">
-                              <h3 className="movie__title">{movie.Title}</h3>
-                              <p className="movie__year">{movie.Year}</p>
-                          </div>
+                    <Link to={`/movies/${movie.imdbID}`} className="movie__card" key={movie.imdbID} style={{ textDecoration: "none" }}>
+                    <div className="movie__image-wrapper">
+                      <img src={movie.Poster} alt={movie.Title} className="movie__img" />
+                      <div className="movie__hover-overlay">
+                        More info →
                       </div>
+                    </div>
+                    <div className="movie__info">
+                      <h3 className="movie__title">{movie.Title}</h3>
+                      <p className="movie__year">{movie.Year}</p>
+                    </div>
+                  </Link>                  
                   ))
               ) : (searchTriggered && (
                   <p className='no__results'>No movies found. Try a different search term.</p> )
