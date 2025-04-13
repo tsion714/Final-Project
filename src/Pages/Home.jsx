@@ -59,7 +59,7 @@ const Home = () => {
         </div>
         </div>
         <div className="movie__poster">
-        <video autoPlay loop muted>
+        <video autoPlay loop muted playsInline>
             <source src={moviePoster} type="video/mp4" />
         </video>
         </div>
