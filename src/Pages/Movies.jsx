@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Movies.css'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import backgroundPicture from '../Assets/Background.png'
 import background from '../Assets/Movies-background.png'
@@ -11,16 +11,17 @@ import logo from '../Assets/Movie-Production-logo .avif'
 const Movies = () => {
 
   const location = useLocation();
+  const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const initialSearch = queryParams.get('q') || '';
 
   
   const [searchTerm, setSearchTerm] = useState(initialSearch);
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState('');
+  const [searchTriggered, setSearchTriggered] = useState(false); 
 
-  useEffect(() => {
     const loadMovies = async () => {
         if (searchTerm.trim() === '') {
             setMovies([]);
@@ -29,7 +30,7 @@ const Movies = () => {
         setLoading(true);
             
             try {
-                const response = await axios.get(`https://www.omdbapi.com/?apikey=6d084915&s=${searchTerm}`);
+                const response = await axios.get(`https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&s=${searchTerm}`);
                 const data = await response.data;
                 
                 if (data.Response === 'True') {
@@ -48,26 +49,49 @@ const Movies = () => {
               setLoading(false);
           }
       };
-      loadMovies();
-    }, [searchTerm, filter]);
 
     const applyFilter = (movies, filter) => {
+        const sorted = [...movies];
       switch (filter) {
           case 'OLD_TO_NEW':
               return movies.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
           case 'NEW_TO_OLD':
               return movies.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
           default:
-              return movies;
+              return sorted;
       }
   };
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
+    setSearchTriggered(false);
 };
+const handleKeyDown = (event) => {
+    if (event.key === 'Enter' && searchTerm.trim().length > 0) {
+        setSearchTriggered(true);
+        loadMovies(searchTerm.trim()); 
+    }
+  };
 
 const handleFilterChange = (event) => {
     setFilter(event.target.value);
 };
+
+useEffect(() => {
+    if (initialSearch.trim().length > 0) {
+        setSearchTerm(initialSearch);
+        setSearchTriggered(true);
+        loadMovies(initialSearch.trim());
+        navigate('/movies', { replace: true });
+      }
+    }, []);
+
+    useEffect(() => {
+        if (movies.length > 0 && filter) {
+          const sorted = applyFilter([...movies], filter);
+          setMovies(sorted);
+        }
+      }, [filter]);
+
 return (
   <div className="container"
   style={{backgroundImage: `url(${backgroundPicture})`, backgroundSize: 'cover', backgroundPosition:'center', minHeight: '100vh',position: 'relative' }}> 
@@ -100,6 +124,7 @@ return (
               type="text"
               value={searchTerm}
               onChange={handleSearchChange}
+              onKeyDown={handleKeyDown}
               placeholder="Search for movies..."
           />
           </div>
@@ -126,8 +151,7 @@ return (
                           </div>
                       </div>
                   ))
-              ) : (
-                searchTerm.trim() !== '' && (
+              ) : (searchTriggered && (
                   <p className='no__results'>No movies found. Try a different search term.</p> )
               )}
           </div>

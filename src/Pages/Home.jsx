@@ -3,7 +3,6 @@ import "./Home.css"
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../Assets/Movie-Production-logo .avif'
 import moviePoster from '../Assets/Movie-poster.mp4'
-import background from '../Assets/Movies-background.png'
 import backgroundPicture from '../Assets/Background.png'
 
 
@@ -14,11 +13,13 @@ const Home = () => {
     const handleSearchChange = (event) => {
         const value = event.target.value;
         setSearchTerm(value);
-        
-        if (value.trim().length > 2){
-            navigate(`/movies?q=${value}`);
-        }
     };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter' && searchTerm.trim().length > 0) {
+          navigate(`/movies?q=${searchTerm.trim()}`);
+        }
+      };
     
 
     return (
@@ -51,6 +52,7 @@ const Home = () => {
                 type="text"
                 value={searchTerm}
                 onChange={handleSearchChange}
+                onKeyDown={handleKeyDown}
                 placeholder="Search for movies"
             /> 
             </div>
