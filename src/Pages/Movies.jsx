@@ -21,6 +21,7 @@ const Movies = () => {
   const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState('');
   const [searchTriggered, setSearchTriggered] = useState(false); 
+  const [menuOpen, setMenuOpen] = useState(false); 
 
     const loadMovies = async () => {
         if (searchTerm.trim() === '') {
@@ -103,15 +104,21 @@ return (
       <div className="logo__container">
       <img src={logo} alt="" className="logo"/>
   </div>
-  <div className="links">
+  <button
+            className="hamburger-button"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            ☰
+          </button>
+  <div className={`links ${menuOpen ? "open" : ""}`}>
       <Link to = "/"
-      style={{color:"#fff", fontSize:"18px", fontWeight:"600", textDecoration:"none",
+      style={{color:"#fff", textDecoration:"none",
       }}>Home</Link>   
       <Link to = "/movies"
-      style={{color:"#fff", fontSize:"18px", fontWeight:"600", textDecoration:"none",
+      style={{color:"#fff", textDecoration:"none",
       }}>Movies</Link>   
       <Link to = "/contacts"
-      style={{color:"#fff", fontSize:"18px", fontWeight:"600", textDecoration:"none",
+      style={{color:"#fff", textDecoration:"none",
       }}>Contact</Link>   
   </div>
 </div>

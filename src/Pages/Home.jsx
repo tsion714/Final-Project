@@ -9,6 +9,7 @@ import backgroundPicture from '../Assets/Background.png'
 const Home = () => {
     const navigate = useNavigate(); 
     const [searchTerm, setSearchTerm] = useState('');
+    const [menuOpen, setMenuOpen] = useState(false); 
 
     const handleSearchChange = (event) => {
         const value = event.target.value;
@@ -25,24 +26,32 @@ const Home = () => {
     return (
         <div className="container"
         style={{backgroundImage: `url(${backgroundPicture})`, backgroundSize: 'cover', backgroundPosition:'center', minHeight: '100vh',position: 'relative' }}> 
-     <div className="header"
-       >
+     {menuOpen && (
+            <div className="menu-overlay" onClick={() => setMenuOpen(false)}> 
+            </div>
+          )}
+           <div className="header">
     <div className="header__title">
         <div className="logo__container">
             <img src={logo} alt="" className="logo"/>
         </div>
-        <div className="links">
+        <button
+         className="hamburger-button"
+            onClick={() => setMenuOpen((prev) => !prev)}>
+            ☰
+          </button>
+          <div className={`links ${menuOpen ? "open" : ""}`}>
             <Link to = "/"
-            style={{color:"#fff", fontSize:"18px", fontWeight:"600", textDecoration:"none",
-            }}>Home</Link>   
+            style={{color:"#fff", textDecoration:"none",
+            }} onClick={() => setMenuOpen(false)}>Home</Link>   
             <Link to = "/movies"
-            style={{color:"#fff", fontSize:"18px", fontWeight:"600", textDecoration:"none",
-            }}>Movies</Link>   
+            style={{color:"#fff", textDecoration:"none",
+            }} onClick={() => setMenuOpen(false)}>Movies</Link>   
             <Link to = "/contacts"
-            style={{color:"#fff", fontSize:"18px", fontWeight:"600", textDecoration:"none",
-            }}>Contact</Link>   
+            style={{color:"#fff", textDecoration:"none",
+            }} onClick={() => setMenuOpen(false)}>Contact</Link>   
         </div>
-    </div>
+        </div>
     <div className="content__wrapper">
         <h1>
             Explore Our Movie Library
