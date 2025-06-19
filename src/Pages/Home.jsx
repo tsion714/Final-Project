@@ -48,7 +48,7 @@ const Home = () => {
             style={{color:"#fff", textDecoration:"none",
             }} onClick={() => setMenuOpen(false)}>Movies</Link>   
             <Link to = "/contacts"
-            style={{color:"#fff", textDecoration:"none",
+            style={{color:"#fff", textDecoration:"none", cursor: "not-allowed",
             }} onClick={() => setMenuOpen(false)}>Contact</Link>   
         </div>
         </div>
