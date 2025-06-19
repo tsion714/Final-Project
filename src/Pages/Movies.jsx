@@ -118,7 +118,7 @@ return (
       style={{color:"#fff", textDecoration:"none",
       }}>Movies</Link>   
       <Link to = "/contacts"
-      style={{color:"#fff", textDecoration:"none",
+      style={{color:"#fff", textDecoration:"none",  cursor: "not-allowed",
       }}>Contact</Link>   
   </div>
 </div>

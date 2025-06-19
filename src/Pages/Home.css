@@ -187,7 +187,7 @@ video{
         transition: color 0.2s ease;
       }
     
-      .links a:hover {
+      .links :hover {
         color: #f0ad4e;
       }
       .menu-overlay {
